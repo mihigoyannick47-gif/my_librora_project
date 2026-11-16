@@ -1,0 +1,133 @@
+USE librora_db;
+
+START TRANSACTION;
+
+INSERT INTO categories (category_id, category_name, description) VALUES
+  (1, 'Technology and Programming', 'Books about software engineering, programming, systems, and modern digital tools.'),
+  (2, 'Business', 'Leadership, strategy, entrepreneurship, and growth-focused reading.'),
+  (3, 'Personal Development', 'Books focused on productivity, mindset, habits, and self-improvement.'),
+  (4, 'Fiction', 'Narrative stories that explore imagination, society, and human experience.'),
+  (5, 'Science', 'Popular science books covering the natural world, discovery, and human understanding.'),
+  (6, 'History', 'Historical works that illuminate the past and the people who shaped it.'),
+  (7, 'Education', 'Resources for learning, writing, teaching, and academic growth.'),
+  (8, 'Fantasy', 'Imaginary worlds, legends, and magical storytelling adventures.'),
+  (9, 'Mystery', 'Suspense-filled stories built on puzzles, tension, and hidden truths.'),
+  (10, 'Literature', 'Classic and influential literary works with enduring cultural significance.')
+ON DUPLICATE KEY UPDATE
+  category_name = VALUES(category_name),
+  description = VALUES(description);
+
+INSERT INTO authors (author_id, author_name, biography, nationality, created_at) VALUES
+  (1, 'Robert C. Martin', 'American software engineer best known for Clean Code and modern agile practices.', 'American', NOW()),
+  (2, 'Andrew Hunt', 'Software author and consultant recognized for practical engineering guidance.', 'American', NOW()),
+  (3, 'David Thomas', 'Software author and programmer known for pragmatic development practices.', 'British', NOW()),
+  (4, 'Douglas Crockford', 'JavaScript expert and author of influential programming books and lectures.', 'American', NOW()),
+  (5, 'Cal Newport', 'Productivity researcher and writer focused on focus, deep work, and meaningful work.', 'American', NOW()),
+  (6, 'James Clear', 'Author and speaker known for habit-building and behavioral science.', 'American', NOW()),
+  (7, 'Daniel Kahneman', 'Psychologist and Nobel laureate noted for work on decision-making and judgment.', 'Israeli-American', NOW()),
+  (8, 'Eric Ries', 'Entrepreneur, author, and startup advisor known for lean innovation methods.', 'American', NOW()),
+  (9, 'Paulo Coelho', 'Brazilian novelist celebrated for philosophical and inspiring fiction.', 'Brazilian', NOW()),
+  (10, 'Jane Austen', 'English novelist celebrated for wit, social insight, and enduring classics.', 'English', NOW()),
+  (11, 'Harper Lee', 'American novelist best known for To Kill a Mockingbird.', 'American', NOW()),
+  (12, 'Yuval Noah Harari', 'Historian and author exploring the connection between humans, history, and science.', 'Israeli', NOW()),
+  (13, 'Stephen Hawking', 'Theoretical physicist and author of popular science works.', 'British', NOW()),
+  (14, 'Daniel Lieberman', 'Professor and evolutionary biologist focused on human health and movement.', 'American', NOW()),
+  (15, 'Tara Westover', 'Memoirist and historian known for Educated and personal growth storytelling.', 'American', NOW()),
+  (16, 'William Strunk Jr.', 'American professor best known for The Elements of Style.', 'American', NOW()),
+  (17, 'J.R.R. Tolkien', 'English writer and philologist famous for fantasy world-building.', 'English', NOW()),
+  (18, 'J.K. Rowling', 'British author famous for the Harry Potter series and imaginative fantasy fiction.', 'British', NOW()),
+  (19, 'Stieg Larsson', 'Swedish journalist and author known for mystery and crime fiction.', 'Swedish', NOW()),
+  (20, 'Arthur Conan Doyle', 'British writer created the legendary detective Sherlock Holmes.', 'British', NOW()),
+  (21, 'Homer', 'Ancient Greek poet associated with the foundational epics Iliad and Odyssey.', 'Greek', NOW()),
+  (22, 'F. Scott Fitzgerald', 'American writer celebrated for The Great Gatsby and 20th-century literary fiction.', 'American', NOW()),
+  (23, 'George Orwell', 'English novelist and essayist known for political and social commentary.', 'English', NOW()),
+  (24, 'Markus Zusak', 'Australian novelist recognized for emotionally resonant and inventive literature.', 'Australian', NOW()),
+  (25, 'Anne Frank', 'Dutch diarist whose writing remains a powerful record of history and courage.', 'Dutch', NOW()),
+  (26, 'David McCullough', 'American historian and author of acclaimed biographies and narrative history.', 'American', NOW()),
+  (27, 'Walter Isaacson', 'American author and journalist known for biographies of leaders and innovators.', 'American', NOW()),
+  (28, 'Charles Duhigg', 'Journalist and author exploring habit formation in business and life.', 'American', NOW()),
+  (29, 'Don Norman', 'Design thinker and author of influential design and usability books.', 'American', NOW()),
+  (30, 'Umberto Eco', 'Italian novelist and semiotician known for intellectual and mystery fiction.', 'Italian', NOW()),
+  (31, 'Frances Hodgson Burnett', 'English-American novelist best known for beloved classic children’s fiction.', 'English-American', NOW())
+ON DUPLICATE KEY UPDATE
+  author_name = VALUES(author_name),
+  biography = VALUES(biography),
+  nationality = VALUES(nationality);
+
+INSERT INTO books (book_id, title, ISBN, author_id, category_id, description, publisher, publication_year, cover_image, created_at) VALUES
+  (1, 'Clean Code', '9780132350884', 1, 1, 'A practical guide to writing readable, maintainable, and efficient software. This book teaches developers how to turn messy code into trusted, quality code.', 'Prentice Hall', 2008, 'https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg?default=false', NOW()),
+  (2, 'The Pragmatic Programmer', '9780201616224', 2, 1, 'A modern classic on software craftsmanship, coding standards, and professional development practices that help engineers deliver reliable systems.', 'Addison-Wesley', 1999, 'https://covers.openlibrary.org/b/isbn/9780201616224-L.jpg?default=false', NOW()),
+  (3, 'JavaScript: The Good Parts', '9780596517748', 4, 1, 'A concise and critical look at the most valuable parts of JavaScript for writing elegant and efficient code.', 'O\'Reilly Media', 2008, 'https://covers.openlibrary.org/b/isbn/9780596517748-L.jpg?default=false', NOW()),
+  (4, 'Deep Work', '9781455586691', 5, 3, 'A practical and motivating guide to concentration, meaningful output, and building a career based on focused thinking.', 'Grand Central Publishing', 2016, 'https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg?default=false', NOW()),
+  (5, 'Atomic Habits', '9780735211292', 6, 3, 'An evidence-based guide to habit formation and improving your daily routines in small but powerful ways.', 'Avery', 2018, 'https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg?default=false', NOW()),
+  (6, 'Thinking, Fast and Slow', '9780374533557', 7, 3, 'A fascinating exploration of the two systems that drive human thought and decision-making, with profound implications for business and life.', 'Farrar, Straus and Giroux', 2011, 'https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg?default=false', NOW()),
+  (7, 'The Lean Startup', '9780307887894', 8, 2, 'An essential guide to rapidly testing ideas, learning from customers, and building businesses that adapt to change.', 'Crown Business', 2011, 'https://covers.openlibrary.org/b/isbn/9780307887894-L.jpg?default=false', NOW()),
+  (8, 'The Alchemist', '9780061122415', 9, 4, 'A lyrical and inspiring tale about following purpose, taking chances, and discovering the meaning of one\'s own journey.', 'HarperOne', 1988, 'https://covers.openlibrary.org/b/isbn/9780061122415-L.jpg?default=false', NOW()),
+  (9, 'Pride and Prejudice', '9780141439518', 10, 10, 'A witty and enduring classic exploring love, family, class, and the subtle art of first impressions.', 'Penguin Classics', 1813, 'https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg?default=false', NOW()),
+  (10, 'To Kill a Mockingbird', '9780061120084', 11, 4, 'A powerful novel about justice, empathy, and moral courage in the face of prejudice and unfairness.', 'Harper Perennial', 1960, 'https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg?default=false', NOW()),
+  (11, 'Sapiens', '9780062316097', 12, 5, 'A sweeping narrative that traces the history of humankind and the extraordinary developments that shaped our species.', 'Harper', 2015, 'https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg?default=false', NOW()),
+  (12, 'A Brief History of Time', '9780553380163', 13, 5, 'A clear and engaging introduction to cosmology, black holes, space, and the deep laws of the universe.', 'Bantam', 1988, 'https://covers.openlibrary.org/b/isbn/9780553380163-L.jpg?default=false', NOW()),
+  (13, 'The Story of the Human Body', '9780307377325', 14, 5, 'An accessible journey through evolution, movement, and the ways the human body has adapted to survival and modern life.', 'Pantheon', 2013, 'https://covers.openlibrary.org/b/isbn/9780307377325-L.jpg?default=false', NOW()),
+  (14, 'Educated', '9780399590501', 15, 7, 'A memoir of resilience, self-discovery, and the transformative power of education and personal freedom.', 'Random House', 2018, 'https://covers.openlibrary.org/b/isbn/9780399590501-L.jpg?default=false', NOW()),
+  (15, 'The Elements of Style', '9780205309023', 16, 7, 'A timeless guide to writing clearly, effectively, and elegantly, with principles that remain widely used in education and publishing.', 'Pearson', 1918, 'https://covers.openlibrary.org/b/isbn/9780205309023-L.jpg?default=false', NOW()),
+  (16, 'The Hobbit', '9780345339683', 17, 8, 'A beloved fantasy adventure filled with courage, treasure, and the warmth of friendship across a remarkable world.', 'Houghton Mifflin', 1937, 'https://covers.openlibrary.org/b/isbn/9780345339683-L.jpg?default=false', NOW()),
+  (17, 'Harry Potter and the Sorcerer\'s Stone', '9780590353427', 18, 8, 'The first enchanting journey into wizardry, friendship, and the magical world that changed a generation of readers.', 'Scholastic', 1997, 'https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg?default=false', NOW()),
+  (18, 'The Girl with the Dragon Tattoo', '9780307269751', 19, 9, 'A gripping mystery with dark secrets, investigative tension, and an unforgettable central character.', 'Knopf', 2005, 'https://covers.openlibrary.org/b/isbn/9780307269751-L.jpg?default=false', NOW()),
+  (19, 'Sherlock Holmes', '9780486275437', 20, 9, 'A collection of iconic stories featuring the world\'s most famous detective and his brilliant partner, Dr. Watson.', 'Dover Publications', 1892, 'https://covers.openlibrary.org/b/isbn/9780486275437-L.jpg?default=false', NOW()),
+  (20, 'The Odyssey', '9780140268867', 21, 10, 'An enduring epic of wandering, perseverance, and homecoming across mythic seas and ancient worlds.', 'Penguin Classics', 2006, 'https://covers.openlibrary.org/b/isbn/9780140268867-L.jpg?default=false', NOW()),
+  (21, 'The Great Gatsby', '9780743273565', 22, 10, 'A classic story of ambition, illusion, and the pursuit of wealth and status in the Jazz Age.', 'Scribner', 1925, 'https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg?default=false', NOW()),
+  (22, 'Animal Farm', '9780452284241', 23, 4, 'A sharp and memorable allegory about power, politics, and how freedom can be compromised.', 'Signet', 1945, 'https://covers.openlibrary.org/b/isbn/9780452284241-L.jpg?default=false', NOW()),
+  (23, 'The Book Thief', '9780375842207', 24, 4, 'A moving and beautifully written novel set in wartime Germany, about words, memory, and survival.', 'Knopf Books for Young Readers', 2006, 'https://covers.openlibrary.org/b/isbn/9780375842207-L.jpg?default=false', NOW()),
+  (24, 'The Diary of a Young Girl', '9780553577129', 25, 6, 'A deeply personal and historically significant diary documenting one young woman\'s experience during extraordinary times.', 'Bantam', 1993, 'https://covers.openlibrary.org/b/isbn/9780553577129-L.jpg?default=false', NOW()),
+  (25, 'The Wright Brothers', '9781476728759', 26, 6, 'A richly detailed account of two brothers whose invention transformed aviation and changed the modern world.', 'Simon & Schuster', 2015, 'https://covers.openlibrary.org/b/isbn/9781476728759-L.jpg?default=false', NOW()),
+  (26, 'The Innovators', '9781476708690', 27, 1, 'A compelling history of the people and ideas behind the digital revolution and the birth of computing.', 'Simon & Schuster', 2014, 'https://covers.openlibrary.org/b/isbn/9781476708690-L.jpg?default=false', NOW()),
+  (27, 'The Power of Habit', '9780812981605', 28, 2, 'A compelling look at how habits shape daily decisions and how successful organizations build lasting routines.', 'Random House', 2012, 'https://covers.openlibrary.org/b/isbn/9780812981605-L.jpg?default=false', NOW()),
+  (28, 'The Design of Everyday Things', '9780465050659', 29, 1, 'A classic exploration of how design affects usability, behavior, and the everyday experiences of people using products.', 'Basic Books', 2013, 'https://covers.openlibrary.org/b/isbn/9780465050659-L.jpg?default=false', NOW()),
+  (29, 'The Name of the Rose', '9780544176563', 30, 9, 'A cerebral and atmospheric historical mystery blending medieval scholarship, murder, and philosophical tension.', 'Houghton Mifflin Harcourt', 1980, 'https://covers.openlibrary.org/b/isbn/9780544176563-L.jpg?default=false', NOW()),
+  (30, 'The Secret Garden', '9780147518484', 31, 4, 'A classic novel of healing, imagination, and quiet transformation in the heart of a hidden garden.', 'Puffin Books', 1911, 'https://covers.openlibrary.org/b/isbn/9780147518484-L.jpg?default=false', NOW())
+ON DUPLICATE KEY UPDATE
+  title = VALUES(title),
+  author_id = VALUES(author_id),
+  category_id = VALUES(category_id),
+  description = VALUES(description),
+  publisher = VALUES(publisher),
+  publication_year = VALUES(publication_year),
+  cover_image = VALUES(cover_image);
+
+INSERT INTO book_copies (copy_id, book_id, barcode, shelf_location, status) VALUES
+  (1, 1, 'BK0001', 'A-101', 'available'),
+  (2, 2, 'BK0002', 'A-102', 'available'),
+  (3, 3, 'BK0003', 'A-103', 'available'),
+  (4, 4, 'BK0004', 'B-101', 'available'),
+  (5, 5, 'BK0005', 'B-102', 'available'),
+  (6, 6, 'BK0006', 'B-103', 'available'),
+  (7, 7, 'BK0007', 'C-101', 'available'),
+  (8, 8, 'BK0008', 'C-102', 'available'),
+  (9, 9, 'BK0009', 'C-103', 'available'),
+  (10, 10, 'BK0010', 'D-101', 'available'),
+  (11, 11, 'BK0011', 'D-102', 'available'),
+  (12, 12, 'BK0012', 'D-103', 'available'),
+  (13, 13, 'BK0013', 'E-101', 'available'),
+  (14, 14, 'BK0014', 'E-102', 'available'),
+  (15, 15, 'BK0015', 'E-103', 'available'),
+  (16, 16, 'BK0016', 'F-101', 'available'),
+  (17, 17, 'BK0017', 'F-102', 'available'),
+  (18, 18, 'BK0018', 'F-103', 'available'),
+  (19, 19, 'BK0019', 'G-101', 'available'),
+  (20, 20, 'BK0020', 'G-102', 'available'),
+  (21, 21, 'BK0021', 'G-103', 'available'),
+  (22, 22, 'BK0022', 'H-101', 'available'),
+  (23, 23, 'BK0023', 'H-102', 'available'),
+  (24, 24, 'BK0024', 'H-103', 'available'),
+  (25, 25, 'BK0025', 'I-101', 'available'),
+  (26, 26, 'BK0026', 'I-102', 'available'),
+  (27, 27, 'BK0027', 'I-103', 'available'),
+  (28, 28, 'BK0028', 'J-101', 'available'),
+  (29, 29, 'BK0029', 'J-102', 'available'),
+  (30, 30, 'BK0030', 'J-103', 'available')
+ON DUPLICATE KEY UPDATE
+  book_id = VALUES(book_id),
+  shelf_location = VALUES(shelf_location),
+  status = VALUES(status);
+
+COMMIT;
