@@ -90,7 +90,7 @@
             <a href="#library" class="muted-link">Browse the library</a>
           </div>
 
-          <div id="bookGrid" class="book-grid" aria-live="polite"></div>
+          <div id="featuredBookGrid" class="book-grid" aria-live="polite"></div>
         </div>
       </section>
 
@@ -133,14 +133,14 @@
       <section class="section" id="library">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Find Your Next Book</h2>
+            <h2 class="section-title">Explore the Full Catalog</h2>
           </div>
 
           <div class="search-panel">
-            <form class="search-form">
+            <form id="bookSearchForm" class="search-form">
               <div class="field">
                 <label for="searchInput">Search title or author</label>
-                <input id="searchInput" type="text" placeholder="Search books" />
+                <input id="searchInput" type="search" placeholder="Search books" />
               </div>
               <div class="field">
                 <label for="categoryFilter">Category</label>
@@ -158,10 +158,16 @@
               </div>
               <div class="field">
                 <label>&nbsp;</label>
-                <button class="btn btn-primary" type="button">Search</button>
+                <button class="btn btn-primary" type="submit">Search</button>
               </div>
             </form>
           </div>
+
+          <div class="catalog-toolbar" aria-live="polite">
+            <p id="catalogResultCount">Loading the catalog…</p>
+            <p id="catalogSourceNote">Availability reflects the copies currently listed in the library.</p>
+          </div>
+          <div id="bookGrid" class="book-grid" aria-live="polite"></div>
         </div>
       </section>
     </main>

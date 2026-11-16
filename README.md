@@ -50,11 +50,15 @@ Then import the schema:
 mysql -u root -p librora_db < database/schema.sql
 ```
 
-Optional sample data can be imported later with:
+`schema.sql` drops and recreates the project tables. Import it only when setting up a new or empty database; do not re-import it if you need to keep existing data.
+
+Import the starter catalog so the site has books to display immediately. The seed includes 30 sample titles, descriptions, inventory copies, and Open Library ISBN cover links:
 
 ```bash
 mysql -u root -p librora_db < database/seed.sql
 ```
+
+The cover images are loaded from Open Library when available; the site shows a built-in fallback cover if a remote image is missing. All 30 seeded titles are listed on the home page with availability and descriptions. A bundled copy of the starter catalog lets the site display the books even when MySQL is not configured; availability shown in that mode is sample data, not live inventory.
 
 ## Step 4: Start the API server
 

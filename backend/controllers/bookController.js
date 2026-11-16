@@ -4,6 +4,7 @@ function buildBookQuery(filters = {}) {
   const { search, category, availability, sort } = filters;
   let query = `
     SELECT b.book_id, b.title, b.ISBN, b.description, b.publisher, b.publication_year, b.cover_image,
+           c.category_id,
            a.author_name, c.category_name,
            COUNT(bc.copy_id) AS total_copies,
            SUM(CASE WHEN bc.status = 'available' THEN 1 ELSE 0 END) AS available_copies
@@ -26,15 +27,13 @@ function buildBookQuery(filters = {}) {
     params.push(Number(category));
   }
 
-  if (availability === 'available') {
-    query += ' AND bc.status = "available"';
-  }
-
-  if (availability === 'unavailable') {
-    query += ' AND (bc.status IS NULL OR bc.status != "available")';
-  }
-
   query += ' GROUP BY b.book_id';
+
+  if (availability === 'available') {
+    query += ' HAVING available_copies > 0';
+  } else if (availability === 'unavailable') {
+    query += ' HAVING available_copies = 0';
+  }
 
   if (sort === 'title_asc') {
     query += ' ORDER BY b.title ASC';
@@ -106,6 +105,7 @@ async function getBookById(req, res) {
       ...book,
       available_copies: Number(book.available_copies || 0),
       total_copies: Number(book.total_copies || 0),
+      is_available: Number(book.available_copies || 0) > 0,
       copies: copyRows,
       reviews: reviewRows
     });

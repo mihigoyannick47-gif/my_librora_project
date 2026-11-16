@@ -312,6 +312,25 @@ button, input, select {
   margin-top: 18px;
 }
 
+.catalog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 20px;
+  color: var(--muted);
+}
+
+.catalog-toolbar p {
+  margin: 0;
+}
+
+.catalog-toolbar p:first-child {
+  color: var(--navy);
+  font-weight: 700;
+}
+
 .book-card {
   background: white;
   border: 1px solid rgba(29, 45, 61, 0.08);
@@ -362,6 +381,16 @@ button, input, select {
   margin: 0 0 8px;
   color: var(--navy);
   font-size: 1.12rem;
+}
+
+.book-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .meta-row {
@@ -425,6 +454,32 @@ button, input, select {
 .detail-copy p {
   margin: 0;
   color: var(--muted);
+}
+
+.detail-description {
+  margin-top: 8px !important;
+  line-height: 1.75;
+}
+
+.availability-panel {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(31, 122, 95, 0.08);
+  color: var(--success);
+}
+
+.availability-panel.unavailable {
+  background: rgba(175, 78, 78, 0.08);
+  color: var(--danger);
+}
+
+.availability-panel p {
+  color: inherit;
+}
+
+.detail-back-link {
+  align-self: flex-start;
+  margin-top: 8px;
 }
 
 .category-grid {

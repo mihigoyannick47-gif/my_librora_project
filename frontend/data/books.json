@@ -1,0 +1,752 @@
+[
+  {
+    "book_id": 1,
+    "title": "Clean Code",
+    "ISBN": "9780132350884",
+    "author_id": 1,
+    "category_id": 1,
+    "author_name": "Robert C. Martin",
+    "category_name": "Technology and Programming",
+    "description": "A practical guide to writing readable, maintainable, and efficient software. This book teaches developers how to turn messy code into trusted, quality code.",
+    "publisher": "Prentice Hall",
+    "publication_year": 2008,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 1,
+        "barcode": "BK0001",
+        "shelf_location": "A-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 2,
+    "title": "The Pragmatic Programmer",
+    "ISBN": "9780201616224",
+    "author_id": 2,
+    "category_id": 1,
+    "author_name": "Andrew Hunt",
+    "category_name": "Technology and Programming",
+    "description": "A modern classic on software craftsmanship, coding standards, and professional development practices that help engineers deliver reliable systems.",
+    "publisher": "Addison-Wesley",
+    "publication_year": 1999,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780201616224-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 2,
+        "barcode": "BK0002",
+        "shelf_location": "A-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 3,
+    "title": "JavaScript: The Good Parts",
+    "ISBN": "9780596517748",
+    "author_id": 4,
+    "category_id": 1,
+    "author_name": "Douglas Crockford",
+    "category_name": "Technology and Programming",
+    "description": "A concise and critical look at the most valuable parts of JavaScript for writing elegant and efficient code.",
+    "publisher": "O'Reilly Media",
+    "publication_year": 2008,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780596517748-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 3,
+        "barcode": "BK0003",
+        "shelf_location": "A-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 4,
+    "title": "Deep Work",
+    "ISBN": "9781455586691",
+    "author_id": 5,
+    "category_id": 3,
+    "author_name": "Cal Newport",
+    "category_name": "Personal Development",
+    "description": "A practical and motivating guide to concentration, meaningful output, and building a career based on focused thinking.",
+    "publisher": "Grand Central Publishing",
+    "publication_year": 2016,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 4,
+        "barcode": "BK0004",
+        "shelf_location": "B-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 5,
+    "title": "Atomic Habits",
+    "ISBN": "9780735211292",
+    "author_id": 6,
+    "category_id": 3,
+    "author_name": "James Clear",
+    "category_name": "Personal Development",
+    "description": "An evidence-based guide to habit formation and improving your daily routines in small but powerful ways.",
+    "publisher": "Avery",
+    "publication_year": 2018,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 5,
+        "barcode": "BK0005",
+        "shelf_location": "B-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 6,
+    "title": "Thinking, Fast and Slow",
+    "ISBN": "9780374533557",
+    "author_id": 7,
+    "category_id": 3,
+    "author_name": "Daniel Kahneman",
+    "category_name": "Personal Development",
+    "description": "A fascinating exploration of the two systems that drive human thought and decision-making, with profound implications for business and life.",
+    "publisher": "Farrar, Straus and Giroux",
+    "publication_year": 2011,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 6,
+        "barcode": "BK0006",
+        "shelf_location": "B-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 7,
+    "title": "The Lean Startup",
+    "ISBN": "9780307887894",
+    "author_id": 8,
+    "category_id": 2,
+    "author_name": "Eric Ries",
+    "category_name": "Business",
+    "description": "An essential guide to rapidly testing ideas, learning from customers, and building businesses that adapt to change.",
+    "publisher": "Crown Business",
+    "publication_year": 2011,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780307887894-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 7,
+        "barcode": "BK0007",
+        "shelf_location": "C-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 8,
+    "title": "The Alchemist",
+    "ISBN": "9780061122415",
+    "author_id": 9,
+    "category_id": 4,
+    "author_name": "Paulo Coelho",
+    "category_name": "Fiction",
+    "description": "A lyrical and inspiring tale about following purpose, taking chances, and discovering the meaning of one's own journey.",
+    "publisher": "HarperOne",
+    "publication_year": 1988,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780061122415-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 8,
+        "barcode": "BK0008",
+        "shelf_location": "C-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 9,
+    "title": "Pride and Prejudice",
+    "ISBN": "9780141439518",
+    "author_id": 10,
+    "category_id": 10,
+    "author_name": "Jane Austen",
+    "category_name": "Literature",
+    "description": "A witty and enduring classic exploring love, family, class, and the subtle art of first impressions.",
+    "publisher": "Penguin Classics",
+    "publication_year": 1813,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 9,
+        "barcode": "BK0009",
+        "shelf_location": "C-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 10,
+    "title": "To Kill a Mockingbird",
+    "ISBN": "9780061120084",
+    "author_id": 11,
+    "category_id": 4,
+    "author_name": "Harper Lee",
+    "category_name": "Fiction",
+    "description": "A powerful novel about justice, empathy, and moral courage in the face of prejudice and unfairness.",
+    "publisher": "Harper Perennial",
+    "publication_year": 1960,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 10,
+        "barcode": "BK0010",
+        "shelf_location": "D-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 11,
+    "title": "Sapiens",
+    "ISBN": "9780062316097",
+    "author_id": 12,
+    "category_id": 5,
+    "author_name": "Yuval Noah Harari",
+    "category_name": "Science",
+    "description": "A sweeping narrative that traces the history of humankind and the extraordinary developments that shaped our species.",
+    "publisher": "Harper",
+    "publication_year": 2015,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 11,
+        "barcode": "BK0011",
+        "shelf_location": "D-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 12,
+    "title": "A Brief History of Time",
+    "ISBN": "9780553380163",
+    "author_id": 13,
+    "category_id": 5,
+    "author_name": "Stephen Hawking",
+    "category_name": "Science",
+    "description": "A clear and engaging introduction to cosmology, black holes, space, and the deep laws of the universe.",
+    "publisher": "Bantam",
+    "publication_year": 1988,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780553380163-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 12,
+        "barcode": "BK0012",
+        "shelf_location": "D-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 13,
+    "title": "The Story of the Human Body",
+    "ISBN": "9780307377325",
+    "author_id": 14,
+    "category_id": 5,
+    "author_name": "Daniel Lieberman",
+    "category_name": "Science",
+    "description": "An accessible journey through evolution, movement, and the ways the human body has adapted to survival and modern life.",
+    "publisher": "Pantheon",
+    "publication_year": 2013,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780307377325-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 13,
+        "barcode": "BK0013",
+        "shelf_location": "E-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 14,
+    "title": "Educated",
+    "ISBN": "9780399590501",
+    "author_id": 15,
+    "category_id": 7,
+    "author_name": "Tara Westover",
+    "category_name": "Education",
+    "description": "A memoir of resilience, self-discovery, and the transformative power of education and personal freedom.",
+    "publisher": "Random House",
+    "publication_year": 2018,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780399590501-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 14,
+        "barcode": "BK0014",
+        "shelf_location": "E-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 15,
+    "title": "The Elements of Style",
+    "ISBN": "9780205309023",
+    "author_id": 16,
+    "category_id": 7,
+    "author_name": "William Strunk Jr.",
+    "category_name": "Education",
+    "description": "A timeless guide to writing clearly, effectively, and elegantly, with principles that remain widely used in education and publishing.",
+    "publisher": "Pearson",
+    "publication_year": 1918,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780205309023-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 15,
+        "barcode": "BK0015",
+        "shelf_location": "E-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 16,
+    "title": "The Hobbit",
+    "ISBN": "9780345339683",
+    "author_id": 17,
+    "category_id": 8,
+    "author_name": "J.R.R. Tolkien",
+    "category_name": "Fantasy",
+    "description": "A beloved fantasy adventure filled with courage, treasure, and the warmth of friendship across a remarkable world.",
+    "publisher": "Houghton Mifflin",
+    "publication_year": 1937,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780345339683-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 16,
+        "barcode": "BK0016",
+        "shelf_location": "F-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 17,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "ISBN": "9780590353427",
+    "author_id": 18,
+    "category_id": 8,
+    "author_name": "J.K. Rowling",
+    "category_name": "Fantasy",
+    "description": "The first enchanting journey into wizardry, friendship, and the magical world that changed a generation of readers.",
+    "publisher": "Scholastic",
+    "publication_year": 1997,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 17,
+        "barcode": "BK0017",
+        "shelf_location": "F-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 18,
+    "title": "The Girl with the Dragon Tattoo",
+    "ISBN": "9780307269751",
+    "author_id": 19,
+    "category_id": 9,
+    "author_name": "Stieg Larsson",
+    "category_name": "Mystery",
+    "description": "A gripping mystery with dark secrets, investigative tension, and an unforgettable central character.",
+    "publisher": "Knopf",
+    "publication_year": 2005,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780307269751-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 18,
+        "barcode": "BK0018",
+        "shelf_location": "F-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 19,
+    "title": "Sherlock Holmes",
+    "ISBN": "9780486275437",
+    "author_id": 20,
+    "category_id": 9,
+    "author_name": "Arthur Conan Doyle",
+    "category_name": "Mystery",
+    "description": "A collection of iconic stories featuring the world's most famous detective and his brilliant partner, Dr. Watson.",
+    "publisher": "Dover Publications",
+    "publication_year": 1892,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780486275437-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 19,
+        "barcode": "BK0019",
+        "shelf_location": "G-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 20,
+    "title": "The Odyssey",
+    "ISBN": "9780140268867",
+    "author_id": 21,
+    "category_id": 10,
+    "author_name": "Homer",
+    "category_name": "Literature",
+    "description": "An enduring epic of wandering, perseverance, and homecoming across mythic seas and ancient worlds.",
+    "publisher": "Penguin Classics",
+    "publication_year": 2006,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780140268867-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 20,
+        "barcode": "BK0020",
+        "shelf_location": "G-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 21,
+    "title": "The Great Gatsby",
+    "ISBN": "9780743273565",
+    "author_id": 22,
+    "category_id": 10,
+    "author_name": "F. Scott Fitzgerald",
+    "category_name": "Literature",
+    "description": "A classic story of ambition, illusion, and the pursuit of wealth and status in the Jazz Age.",
+    "publisher": "Scribner",
+    "publication_year": 1925,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 21,
+        "barcode": "BK0021",
+        "shelf_location": "G-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 22,
+    "title": "Animal Farm",
+    "ISBN": "9780452284241",
+    "author_id": 23,
+    "category_id": 4,
+    "author_name": "George Orwell",
+    "category_name": "Fiction",
+    "description": "A sharp and memorable allegory about power, politics, and how freedom can be compromised.",
+    "publisher": "Signet",
+    "publication_year": 1945,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780452284241-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 22,
+        "barcode": "BK0022",
+        "shelf_location": "H-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 23,
+    "title": "The Book Thief",
+    "ISBN": "9780375842207",
+    "author_id": 24,
+    "category_id": 4,
+    "author_name": "Markus Zusak",
+    "category_name": "Fiction",
+    "description": "A moving and beautifully written novel set in wartime Germany, about words, memory, and survival.",
+    "publisher": "Knopf Books for Young Readers",
+    "publication_year": 2006,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780375842207-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 23,
+        "barcode": "BK0023",
+        "shelf_location": "H-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 24,
+    "title": "The Diary of a Young Girl",
+    "ISBN": "9780553577129",
+    "author_id": 25,
+    "category_id": 6,
+    "author_name": "Anne Frank",
+    "category_name": "History",
+    "description": "A deeply personal and historically significant diary documenting one young woman's experience during extraordinary times.",
+    "publisher": "Bantam",
+    "publication_year": 1993,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780553577129-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 24,
+        "barcode": "BK0024",
+        "shelf_location": "H-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 25,
+    "title": "The Wright Brothers",
+    "ISBN": "9781476728759",
+    "author_id": 26,
+    "category_id": 6,
+    "author_name": "David McCullough",
+    "category_name": "History",
+    "description": "A richly detailed account of two brothers whose invention transformed aviation and changed the modern world.",
+    "publisher": "Simon & Schuster",
+    "publication_year": 2015,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9781476728759-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 25,
+        "barcode": "BK0025",
+        "shelf_location": "I-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 26,
+    "title": "The Innovators",
+    "ISBN": "9781476708690",
+    "author_id": 27,
+    "category_id": 1,
+    "author_name": "Walter Isaacson",
+    "category_name": "Technology and Programming",
+    "description": "A compelling history of the people and ideas behind the digital revolution and the birth of computing.",
+    "publisher": "Simon & Schuster",
+    "publication_year": 2014,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9781476708690-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 26,
+        "barcode": "BK0026",
+        "shelf_location": "I-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 27,
+    "title": "The Power of Habit",
+    "ISBN": "9780812981605",
+    "author_id": 28,
+    "category_id": 2,
+    "author_name": "Charles Duhigg",
+    "category_name": "Business",
+    "description": "A compelling look at how habits shape daily decisions and how successful organizations build lasting routines.",
+    "publisher": "Random House",
+    "publication_year": 2012,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780812981605-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 27,
+        "barcode": "BK0027",
+        "shelf_location": "I-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 28,
+    "title": "The Design of Everyday Things",
+    "ISBN": "9780465050659",
+    "author_id": 29,
+    "category_id": 1,
+    "author_name": "Don Norman",
+    "category_name": "Technology and Programming",
+    "description": "A classic exploration of how design affects usability, behavior, and the everyday experiences of people using products.",
+    "publisher": "Basic Books",
+    "publication_year": 2013,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780465050659-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 28,
+        "barcode": "BK0028",
+        "shelf_location": "J-101",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 29,
+    "title": "The Name of the Rose",
+    "ISBN": "9780544176563",
+    "author_id": 30,
+    "category_id": 9,
+    "author_name": "Umberto Eco",
+    "category_name": "Mystery",
+    "description": "A cerebral and atmospheric historical mystery blending medieval scholarship, murder, and philosophical tension.",
+    "publisher": "Houghton Mifflin Harcourt",
+    "publication_year": 1980,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780544176563-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 29,
+        "barcode": "BK0029",
+        "shelf_location": "J-102",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "book_id": 30,
+    "title": "The Secret Garden",
+    "ISBN": "9780147518484",
+    "author_id": 31,
+    "category_id": 4,
+    "author_name": "Frances Hodgson Burnett",
+    "category_name": "Fiction",
+    "description": "A classic novel of healing, imagination, and quiet transformation in the heart of a hidden garden.",
+    "publisher": "Puffin Books",
+    "publication_year": 1911,
+    "cover_image": "https://covers.openlibrary.org/b/isbn/9780147518484-L.jpg?default=false",
+    "total_copies": 1,
+    "available_copies": 1,
+    "is_available": true,
+    "copies": [
+      {
+        "copy_id": 30,
+        "barcode": "BK0030",
+        "shelf_location": "J-103",
+        "status": "available"
+      }
+    ],
+    "reviews": []
+  }
+]

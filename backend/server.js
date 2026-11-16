@@ -16,7 +16,12 @@ const port = process.env.PORT || 5000;
 const frontendDir = path.join(__dirname, '..', 'frontend');
 
 app.use(helmet({
-  crossOriginResourcePolicy: false
+  crossOriginResourcePolicy: false,
+  contentSecurityPolicy: {
+    directives: {
+      'img-src': ["'self'", 'data:', 'https://covers.openlibrary.org']
+    }
+  }
 }));
 
 app.use(cors({
@@ -50,6 +55,7 @@ app.get('/api/health', async (req, res) => {
 app.use('/assets', express.static(path.join(frontendDir, 'assets')));
 app.use('/css', express.static(path.join(frontendDir, 'css')));
 app.use('/js', express.static(path.join(frontendDir, 'js')));
+app.use('/data', express.static(path.join(frontendDir, 'data')));
 app.use('/images', express.static(path.join(frontendDir, 'images')));
 app.use('/pages', express.static(path.join(frontendDir, 'pages')));
 

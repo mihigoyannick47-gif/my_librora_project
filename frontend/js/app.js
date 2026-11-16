@@ -1,4 +1,5 @@
 const API_BASE = 'http://localhost:5000/api';
+let catalogBooks = [];
 
 const defaultBookImage = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
@@ -17,107 +18,308 @@ const defaultBookImage = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponen
 </svg>
 `);
 
+function makeElement(tagName, className, text) {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function createBookImage(book, className) {
+  const image = makeElement('img', className);
+  image.src = book.cover_image || defaultBookImage;
+  image.alt = `${book.title} cover`;
+  image.loading = 'lazy';
+  image.decoding = 'async';
+  image.onerror = () => {
+    image.onerror = null;
+    image.src = defaultBookImage;
+  };
+  return image;
+}
+
+function bookAvailability(book) {
+  const total = Number(book.total_copies || 0);
+  const available = Number(book.available_copies || 0);
+
+  if (total === 0) return { available, total, label: 'No copies listed' };
+  if (available === 0) return { available, total, label: 'Currently borrowed' };
+  return { available, total, label: `${available} of ${total} available` };
+}
+
 function createBookCard(book) {
   const card = document.createElement('article');
   card.className = 'book-card';
 
-  const available = Number(book.available_copies || 0) > 0;
-  const imageUrl = book.cover_image || defaultBookImage;
+  const availability = bookAvailability(book);
+  const cover = makeElement('div', 'book-cover-wrap');
+  cover.appendChild(createBookImage(book));
+  cover.appendChild(makeElement(
+    'span',
+    `status-chip ${availability.available === 0 ? 'unavailable' : ''}`,
+    availability.label
+  ));
 
-  card.innerHTML = `
-    <div class="book-cover-wrap">
-      <img src="${imageUrl}" alt="${book.title}" onerror="this.src='${defaultBookImage}'" />
-      <span class="status-chip ${available ? '' : 'unavailable'}">${available ? 'Available' : 'Unavailable'}</span>
-    </div>
-    <div class="book-info">
-      <div class="meta-row">
-        <span>${book.category_name || 'General'}</span>
-        <span>${book.publication_year || 'N/A'}</span>
-      </div>
-      <h3>${book.title}</h3>
-      <div class="meta-row">
-        <span>${book.author_name || 'Unknown author'}</span>
-        <span>${book.available_copies || 0} left</span>
-      </div>
-      <div class="book-actions">
-        <button class="btn btn-secondary" type="button">Borrow</button>
-        <a href="details.html?id=${book.book_id}" class="link-btn">View Details</a>
-      </div>
-    </div>
-  `;
+  const info = makeElement('div', 'book-info');
+  const category = makeElement('div', 'meta-row');
+  category.append(
+    makeElement('span', '', book.category_name || 'General'),
+    makeElement('span', '', book.publication_year || 'Year not listed')
+  );
+  info.append(category, makeElement('h3', '', book.title));
+
+  const author = makeElement('div', 'meta-row');
+  author.append(
+    makeElement('span', '', book.author_name || 'Unknown author'),
+    makeElement('span', '', `${availability.available}/${availability.total} copies`)
+  );
+  info.append(
+    author,
+    makeElement('p', 'book-description', book.description || 'No description available yet.')
+  );
+
+  const actions = makeElement('div', 'book-actions');
+  const detailsLink = makeElement('a', 'link-btn', 'View book details');
+  detailsLink.href = `details.html?id=${encodeURIComponent(book.book_id)}`;
+  detailsLink.setAttribute('aria-label', `View details for ${book.title}`);
+  actions.appendChild(detailsLink);
+  info.appendChild(actions);
+
+  card.append(cover, info);
 
   return card;
 }
 
-async function loadBooks() {
-  const container = document.getElementById('bookGrid');
+function renderBookList(container, books, emptyMessage) {
   if (!container) return;
+
+  if (!books.length) {
+    container.replaceChildren(makeElement('p', 'muted', emptyMessage));
+    return;
+  }
+
+  container.replaceChildren(...books.map(createBookCard));
+}
+
+function renderCatalog() {
+  const search = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+  const category = document.getElementById('categoryFilter')?.value || '';
+  const availability = document.getElementById('availabilityFilter')?.value || '';
+
+  const filteredBooks = catalogBooks.filter((book) => {
+    const matchesSearch = !search
+      || `${book.title} ${book.author_name}`.toLowerCase().includes(search);
+    const matchesCategory = !category || String(book.category_id) === category;
+    const availableCopies = Number(book.available_copies || 0);
+    const matchesAvailability = !availability
+      || (availability === 'available' ? availableCopies > 0 : availableCopies === 0);
+
+    return matchesSearch && matchesCategory && matchesAvailability;
+  });
+
+  const count = document.getElementById('catalogResultCount');
+  if (count) {
+    count.textContent = `Showing ${filteredBooks.length} of ${catalogBooks.length} books`;
+  }
+
+  renderBookList(
+    document.getElementById('bookGrid'),
+    filteredBooks,
+    'No books match these filters. Try changing your search.'
+  );
+}
+
+function populateCategories(books) {
+  const select = document.getElementById('categoryFilter');
+  if (!select) return;
+
+  const categoryNames = new Map(
+    books.map((book) => [String(book.category_id), book.category_name || 'General'])
+  );
+  const allCategories = makeElement('option', '', 'All categories');
+  allCategories.value = '';
+  select.replaceChildren(allCategories);
+
+  [...categoryNames.entries()]
+    .sort((first, second) => first[1].localeCompare(second[1]))
+    .forEach(([id, name]) => {
+      const option = makeElement('option', '', name);
+      option.value = id;
+      select.appendChild(option);
+    });
+}
+
+async function loadBundledBooks() {
+  let lastError;
+
+  for (const path of ['/data/books.json', 'data/books.json']) {
+    try {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`Bundled catalog request failed (${response.status}).`);
+
+      const books = await response.json();
+      if (!Array.isArray(books)) throw new Error('Bundled catalog has an invalid format.');
+      return books;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error('Bundled catalog is unavailable.');
+}
+
+async function loadBooks() {
+  const catalog = document.getElementById('bookGrid');
+  const featured = document.getElementById('featuredBookGrid');
+  if (!catalog && !featured) return;
+
+  let usingSampleCatalog = false;
 
   try {
     const response = await fetch(`${API_BASE}/books`);
+    if (!response.ok) throw new Error(`Catalog request failed (${response.status}).`);
+
     const data = await response.json();
-    const books = data.books || [];
+    catalogBooks = Array.isArray(data.books) ? data.books : [];
+    if (!catalogBooks.length) usingSampleCatalog = true;
+  } catch (error) {
+    console.warn('Live catalog unavailable; loading bundled sample catalog:', error);
+    usingSampleCatalog = true;
+  }
 
-    container.innerHTML = '';
-
-    if (!books.length) {
-      container.innerHTML = '<p class="muted">No books available right now.</p>';
+  if (usingSampleCatalog) {
+    try {
+      catalogBooks = await loadBundledBooks();
+    } catch (error) {
+      console.error('Load bundled catalog error:', error);
+      const message = 'The catalog could not load. Start the app from the project folder and check that frontend/data/books.json exists.';
+      renderBookList(catalog, [], message);
+      renderBookList(featured, [], message);
+      const count = document.getElementById('catalogResultCount');
+      if (count) count.textContent = 'Catalog unavailable';
       return;
     }
-
-    books.slice(0, 8).forEach((book) => {
-      container.appendChild(createBookCard(book));
-    });
-  } catch (error) {
-    container.innerHTML = '<p class="muted">The library catalog is temporarily unavailable. Please try again later.</p>';
   }
+
+  populateCategories(catalogBooks);
+  renderBookList(
+    featured,
+    catalogBooks.slice(0, 6),
+    'No books are listed yet. Add books to the catalog to feature them here.'
+  );
+  renderCatalog();
+
+  const sourceNote = document.getElementById('catalogSourceNote');
+  if (sourceNote && usingSampleCatalog) {
+    sourceNote.textContent = 'Showing the bundled sample catalog. Availability is sample data until the database is connected.';
+  }
+}
+
+function appendDetailField(container, label, value) {
+  const row = makeElement('p');
+  const displayValue = value === null || value === undefined || value === ''
+    ? 'Not specified'
+    : value;
+  row.append(makeElement('strong', '', `${label}: `), document.createTextNode(displayValue));
+  container.appendChild(row);
 }
 
 async function loadBookDetails() {
   const root = document.getElementById('bookDetails');
   if (!root) return;
 
+  root.textContent = 'Loading book details…';
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
 
   if (!id) {
-    root.innerHTML = '<p>Book not found.</p>';
+    root.textContent = 'Book not found.';
+    return;
+  }
+
+  let book;
+  try {
+    const response = await fetch(`${API_BASE}/books/${id}`);
+    if (response.ok) {
+      book = await response.json();
+    } else {
+      console.warn(`Book details API returned ${response.status}; checking bundled sample catalog.`);
+    }
+  } catch (error) {
+    console.warn('Book details API unavailable; checking bundled sample catalog:', error);
+  }
+
+  if (!book) {
+    try {
+      const bundledBooks = await loadBundledBooks();
+      book = bundledBooks.find((item) => String(item.book_id) === id);
+    } catch (error) {
+      console.error('Load bundled book details error:', error);
+    }
+  }
+
+  if (!book) {
+    root.textContent = 'Book not found, or the catalog could not be loaded.';
     return;
   }
 
   try {
-    const response = await fetch(`${API_BASE}/books/${id}`);
-    const book = await response.json();
+    const availability = bookAvailability(book);
+    const detailCard = makeElement('div', 'detail-card');
+    const cover = makeElement('div', 'detail-cover');
+    cover.appendChild(createBookImage(book));
 
-    if (!response.ok) {
-      root.innerHTML = '<p>Unable to fetch this book.</p>';
-      return;
+    const copy = makeElement('div', 'detail-copy');
+    copy.append(
+      makeElement('span', 'pill', book.category_name || 'General'),
+      makeElement('h1', '', book.title)
+    );
+    appendDetailField(copy, 'Author', book.author_name);
+    appendDetailField(copy, 'Publisher', book.publisher);
+    appendDetailField(copy, 'Publication year', book.publication_year);
+    appendDetailField(copy, 'ISBN', book.ISBN);
+    appendDetailField(copy, 'Total copies', availability.total);
+
+    const availabilityPanel = makeElement(
+      'div',
+      `availability-panel ${availability.available === 0 ? 'unavailable' : ''}`
+    );
+    availabilityPanel.append(
+      makeElement('strong', '', availability.label),
+      makeElement(
+        'p',
+        '',
+        availability.available > 0
+          ? 'This title has copies currently available.'
+          : availability.total > 0
+            ? 'All listed copies are currently borrowed or unavailable.'
+            : 'No copies have been added to the inventory yet.'
+      )
+    );
+    copy.appendChild(availabilityPanel);
+
+    const shelfLocations = [...new Set(
+      (book.copies || [])
+        .filter((bookCopy) => bookCopy.status === 'available' && bookCopy.shelf_location)
+        .map((bookCopy) => bookCopy.shelf_location)
+    )];
+    if (shelfLocations.length) {
+      appendDetailField(copy, 'Available at', shelfLocations.join(', '));
     }
 
-    root.innerHTML = `
-      <div class="detail-card">
-        <div class="detail-cover">
-          <img src="${book.cover_image || defaultBookImage}" alt="${book.title}" onerror="this.src='${defaultBookImage}'" />
-        </div>
-        <div class="detail-copy">
-          <span class="pill">${book.category_name}</span>
-          <h1>${book.title}</h1>
-          <p><strong>Author:</strong> ${book.author_name}</p>
-          <p><strong>Publisher:</strong> ${book.publisher || 'Not specified'}</p>
-          <p><strong>Publication year:</strong> ${book.publication_year || 'N/A'}</p>
-          <p><strong>ISBN:</strong> ${book.ISBN}</p>
-          <p><strong>Available copies:</strong> ${book.available_copies || 0}</p>
-          <p><strong>Total copies:</strong> ${book.total_copies || 0}</p>
-          <p>${book.description || 'No description available yet.'}</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="button">Borrow Book</button>
-            <button class="btn btn-secondary" type="button">Reserve</button>
-          </div>
-        </div>
-      </div>
-    `;
+    copy.append(
+      makeElement('h2', '', 'About this book'),
+      makeElement('p', 'detail-description', book.description || 'No description available yet.')
+    );
+
+    const backLink = makeElement('a', 'btn btn-secondary detail-back-link', 'Back to all books');
+    backLink.href = 'index.html#library';
+    copy.appendChild(backLink);
+    detailCard.append(cover, copy);
+    root.replaceChildren(detailCard);
   } catch (error) {
-    root.innerHTML = '<p>Unable to load the book details right now.</p>';
+    console.error('Load book details error:', error);
+    root.textContent = 'Unable to load the book details right now. Check that the API is running.';
   }
 }
 
@@ -202,6 +404,10 @@ async function loginMember(event) {
 document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('registerForm');
   const loginForm = document.getElementById('loginForm');
+  const searchForm = document.getElementById('bookSearchForm');
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const availabilityFilter = document.getElementById('availabilityFilter');
 
   if (registerForm) {
     registerForm.addEventListener('submit', registerMember);
@@ -211,7 +417,26 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', loginMember);
   }
 
-  if (document.getElementById('bookGrid')) {
+  if (searchForm) {
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      renderCatalog();
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', renderCatalog);
+  }
+
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', renderCatalog);
+  }
+
+  if (availabilityFilter) {
+    availabilityFilter.addEventListener('change', renderCatalog);
+  }
+
+  if (document.getElementById('bookGrid') || document.getElementById('featuredBookGrid')) {
     loadBooks();
   }
 
